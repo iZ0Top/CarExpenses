@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentList">
+
+    <fragment
+        android:id="@+id/fragmentAdd"
+        android:name="com.example.carexpenses.FragmentAdd"
+        android:label="fragment_add"
+        tools:layout="@layout/fragment_add" />
+    <fragment
+        android:id="@+id/fragmentList"
+        android:name="com.example.carexpenses.FragmentList"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_fragmentList_to_fragmentAdd"
+            app:destination="@id/fragmentAdd" />
+        <action
+            android:id="@+id/action_fragmentList_to_fragmentSetting"
+            app:destination="@id/fragmentSetting" />
+        <action
+            android:id="@+id/action_fragmentList_to_fragmentInfo"
+            app:destination="@id/fragmentInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSetting"
+        android:name="com.example.carexpenses.FragmentSetting"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_fragmentSetting_to_fragmentList"
+            app:destination="@id/fragmentList" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentInfo"
+        android:name="com.example.carexpenses.FragmentInfo"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info" >
+        <action
+            android:id="@+id/action_fragmentInfo_to_fragmentList"
+            app:destination="@id/fragmentList" />
+    </fragment>
+</navigation>
