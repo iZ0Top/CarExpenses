@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/fragmentAdd"
-        android:name="com.example.carexpenses.FragmentAdd"
+        android:name="com.example.carexpenses.screens.FragmentAdd"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" />
     <fragment
         android:id="@+id/fragmentList"
-        android:name="com.example.carexpenses.FragmentList"
+        android:name="com.example.carexpenses.screens.list.FragmentList"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentSetting"
-        android:name="com.example.carexpenses.FragmentSetting"
+        android:name="com.example.carexpenses.screens.FragmentSetting"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" >
         <action
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentInfo"
-        android:name="com.example.carexpenses.FragmentInfo"
+        android:name="com.example.carexpenses.screens.FragmentInfo"
         android:label="fragment_info"
         tools:layout="@layout/fragment_info" >
         <action
