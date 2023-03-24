@@ -75,13 +75,8 @@ class FragmentList : Fragment() {
         listEventRefueling01.add(EventRefueling(1,"10.10.1011", 123458, 1, 1,37, 996))
         listEventRefueling02.add(EventRefueling(2,"10.10.1013", 123459, 1, 2,45, 1678))
 
-
-
-        events.add(Event(0,"10.10.2010",123456,0,999, listEventExpense01, listEventRefueling00))
+        events.add(Event(0,"10.10.2020",123456,0,1000, listEventExpense01, listEventRefueling00))
         events.add(Event(1,"10.10.2010",123457,1,999, listEventExpense00, listEventRefueling02))
-        events.add(Event(2,"10.10.2011",123458,0,999, listEventExpense00, listEventRefueling02))
-
-
     }
 
 }

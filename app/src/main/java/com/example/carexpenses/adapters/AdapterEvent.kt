@@ -13,10 +13,12 @@ import com.example.carexpenses.utils.TYPE_REFUELING
 class AdapterEvent: RecyclerView.Adapter<AdapterEvent.EventHolder>() {
 
     private var lisEvent = emptyList<Event>()
+    lateinit var recyclerView: RecyclerView
 
     fun setData(list: List<Event>){
         this.lisEvent = list
         Log.d(TAG, "AdapterEvent, event list size: ${lisEvent.size}")
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventHolder {
@@ -34,7 +36,7 @@ class AdapterEvent: RecyclerView.Adapter<AdapterEvent.EventHolder>() {
         val event = lisEvent[position]
         val eventExpense = event.listEventExpenses
         val eventRefueling = event.listEventRefueling
-        val mRecyclerView = holder.binding.itemRecyclerView
+        recyclerView = holder.binding.itemRecyclerView
 
         holder.binding.itemDate.text = event.date
         holder.binding.itemOdometer.text = event.odometer.toString()
@@ -44,13 +46,13 @@ class AdapterEvent: RecyclerView.Adapter<AdapterEvent.EventHolder>() {
         if (event.type == TYPE_EXPENSE){
             Log.d(TAG, "AdapterEvent, event expense list size: ${eventExpense.size}")
             val adapterEventExpense = AdapterEventExpense()
-            mRecyclerView.adapter = adapterEventExpense
-            adapterEventExpense.setListEventExpense(eventExpense)
+            recyclerView.adapter = adapterEventExpense
+            adapterEventExpense.setChildListEventExpense(eventExpense)
         }
         if (event.type == TYPE_REFUELING){
             Log.d(TAG, "AdapterEvent, event refueling list size: ${eventRefueling.size}")
             val adapterEventRefueling = AdapterEventRefueling()
-            mRecyclerView.adapter = adapterEventRefueling
+            recyclerView.adapter = adapterEventRefueling
             adapterEventRefueling.setListEventRefueling(eventRefueling)
         }
     }

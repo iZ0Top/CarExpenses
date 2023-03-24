@@ -12,6 +12,7 @@ class AdapterEventRefueling: RecyclerView.Adapter<AdapterEventRefueling.EventRef
 
     fun setListEventRefueling(list: List<EventRefueling>){
         this.listEventRefueling = list
+        notifyDataSetChanged()
     }
 
     override fun getItemCount() = listEventRefueling.size
