@@ -5,6 +5,4 @@ import androidx.lifecycle.AndroidViewModel
 import com.example.carexpenses.model.EventExpense
 
 class ListViewModel(application: Application): AndroidViewModel(application) {
-
-
 }
