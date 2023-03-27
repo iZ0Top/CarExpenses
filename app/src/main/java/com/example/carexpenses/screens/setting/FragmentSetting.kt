@@ -1,4 +1,4 @@
-package com.example.carexpenses.screens
+package com.example.carexpenses.screens.setting
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

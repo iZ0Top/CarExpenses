@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentSetting"
-        android:name="com.example.carexpenses.screens.FragmentSetting"
+        android:name="com.example.carexpenses.screens.setting.FragmentSetting"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" >
         <action
