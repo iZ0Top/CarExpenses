@@ -11,20 +11,33 @@ class Calculate(eventExpense: EventExpense, eventRefueling: EventRefueling): Liv
 
         var listEvent = mutableListOf<Event>()
 
-        val listExpense = expense.groupBy { it.id }
-        val listRefueling = refueling.groupBy { it.date }
+        val mapExpense = expense.groupBy { it.id }
+        val mapRefueling = refueling.groupBy { it.date }
 
-        for (childList in listExpense){
+        for (childMap in mapExpense){
+            var childList = mutableListOf<EventExpense>()
             var date: String = ""
             var odometer: Int = 0
             var type  = 0
             var sum = 0
-            for (ex in childList.value){
-                date = ex.date
-                odometer = ex.odometer
-                sum += ex.price
+            for (eventExpense in childMap.value){
+                date = eventExpense.date
+                odometer = eventExpense.odometer
+                sum += eventExpense.price
+                childList.add(eventExpense)
             }
-            listEvent.add(Event(0, date, odometer, type, sum, childList, ))
+            listEvent.add(Event(0, date, odometer, type, sum, childList,null,))
+        }
+        for (childMap in mapRefueling){
+            var childList = mutableListOf<EventRefueling>()
+            var date: String = ""
+            var odometer = 0
+            var type = 0
+            var sum = 0
+            for (eventRefueling in childMap.key){
+
+            }
+
         }
     }
 }
