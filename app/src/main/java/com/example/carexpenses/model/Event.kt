@@ -1,7 +1,7 @@
 package com.example.carexpenses.model
 
 data class Event (
-    val id: Int = 0,
+    val groupId: Int = 0,
     val date: String,
     val odometer: Int,
     val type: Int,
