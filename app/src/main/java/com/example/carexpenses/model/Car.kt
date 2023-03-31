@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "cars")
 data class Car(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id_car: Int,
     val brand: String,
     val model: String,
     val winCode: String,

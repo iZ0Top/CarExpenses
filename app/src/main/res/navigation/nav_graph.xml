@@ -7,9 +7,13 @@
 
     <fragment
         android:id="@+id/fragmentAdd"
-        android:name="com.example.carexpenses.screens.FragmentAdd"
+        android:name="com.example.carexpenses.screens.add.FragmentAdd"
         android:label="fragment_add"
-        tools:layout="@layout/fragment_add" />
+        tools:layout="@layout/fragment_add" >
+        <action
+            android:id="@+id/action_fragmentAdd_to_fragmentList"
+            app:destination="@id/fragmentList" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentList"
         android:name="com.example.carexpenses.screens.list.FragmentList"
