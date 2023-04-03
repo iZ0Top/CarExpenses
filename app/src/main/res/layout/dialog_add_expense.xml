@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:layout_marginStart="@dimen/dialog_margin"
+        android:layout_marginTop="@dimen/dialog_margin"
+        android:layout_marginEnd="@dimen/dialog_margin"
+        app:layout_constraintBottom_toTopOf="@id/et_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Description"
+        android:layout_marginStart="@dimen/dialog_margin"
+        android:layout_marginTop="@dimen/dialog_margin"
+        android:layout_marginEnd="@dimen/dialog_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_name"
+        app:layout_constraintBottom_toTopOf="@id/et_part_num"/>
+
+    <EditText
+        android:id="@+id/et_part_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Part number"
+        android:layout_marginStart="@dimen/dialog_margin"
+        android:layout_marginTop="@dimen/dialog_margin"
+        android:layout_marginEnd="@dimen/dialog_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_description"
+        app:layout_constraintBottom_toTopOf="@id/et_count"/>
+
+    <EditText
+        android:id="@+id/et_count"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="000"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="@dimen/dialog_margin"
+        android:layout_marginTop="@dimen/dialog_margin"
+        android:layout_marginEnd="@dimen/dialog_margin"
+        app:layout_constraintStart_toEndOf="@id/tv_count"
+        app:layout_constraintEnd_toStartOf="@+id/tv_count_title"
+        app:layout_constraintTop_toBottomOf="@+id/et_part_num"
+        app:layout_constraintBottom_toTopOf="@id/et_price"/>
+
+    <EditText
+        android:id="@+id/et_price"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="0000.00"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="@dimen/dialog_margin"
+        android:layout_marginTop="@dimen/dialog_margin"
+        android:layout_marginBottom="@dimen/dialog_margin"
+        android:layout_marginEnd="@dimen/dialog_margin"
+        app:layout_constraintStart_toEndOf="@id/tv_sum"
+        app:layout_constraintEnd_toStartOf="@+id/tv_sum_title"
+        app:layout_constraintTop_toBottomOf="@+id/et_count"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Кількість"
+        android:gravity="end"
+        android:layout_marginStart="@dimen/dialog_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/et_count"
+        app:layout_constraintEnd_toStartOf="@+id/et_count"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_count" />
+
+    <TextView
+        android:id="@+id/tv_count_title"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="шт"
+        android:layout_marginEnd="@dimen/dialog_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/et_count"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_count" />
+
+    <TextView
+        android:id="@+id/tv_sum"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Вартість"
+        android:gravity="end"
+        android:layout_marginStart="@dimen/dialog_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/et_price"
+        app:layout_constraintEnd_toStartOf="@+id/et_price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_price" />
+
+    <TextView
+        android:id="@+id/tv_sum_title"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="грн"
+        android:layout_marginEnd="@dimen/dialog_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/et_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_price" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

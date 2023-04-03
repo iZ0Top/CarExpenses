@@ -55,9 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
             true
         }
-
     }
-
 
     override fun onStart() {
         super.onStart()

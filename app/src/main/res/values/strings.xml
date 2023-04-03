@@ -2,4 +2,15 @@
     <string name="app_name">CarExpenses</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="t_list">Список</string>
+    <string name="t_add">Додати</string>
+    <string name="t_info">Інфо</string>
+    <string name="t_uah">грн</string>
+    <string name="t_km">км</string>
+    <string name="t_uah_l">грн\л</string>
+    <string name="t_count">шт</string>
+
+
+
+
 </resources>

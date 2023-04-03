@@ -16,4 +16,4 @@ data class Expense (
     @ColumnInfo(name = "part_number")val part_number: String,
     @ColumnInfo(name = "amount")val amount: Int,
     @ColumnInfo(name = "sum")val sum: Int
-        )
+        ): java.io.Serializable

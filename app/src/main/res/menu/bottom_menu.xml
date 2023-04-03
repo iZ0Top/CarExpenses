@@ -3,15 +3,15 @@
 
     <item
         android:id="@+id/bottom_btn_list"
-        android:title="List"
+        android:title="@string/t_list"
         />
     <item
         android:id="@+id/bottom_btn_add"
-        android:title="Add"
+        android:title="@string/t_add"
         />
     <item
         android:id="@+id/bottom_btn_info"
-        android:title="Info"
+        android:title="@string/t_info"
         />
 
 </menu>
