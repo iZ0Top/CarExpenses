@@ -1,14 +1,17 @@
 package com.example.carexpenses.screens.add
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import com.example.carexpenses.databinding.FragmentAddBinding
 import com.example.carexpenses.model.Expense
 import com.example.carexpenses.screens.dialog.DialogAddExpense
+import com.example.carexpenses.utils.TAG
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
@@ -17,9 +20,6 @@ class FragmentAdd : Fragment() {
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
     lateinit var mAddViewModel: AddViewModel
-
-    private lateinit var fab: FloatingActionButton
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +39,17 @@ class FragmentAdd : Fragment() {
         super.onStart()
         mAddViewModel = ViewModelProvider(this).get(AddViewModel::class.java)
 
-        setupDialogListener()
         binding.addFab.setOnClickListener {
-            val dialog = DialogAddExpense()
-            dialog.show(parentFragmentManager, DialogAddExpense::class.java.simpleName)
+            showDialog()
         }
+        getResultFromDialog()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+
+
     }
 
     override fun onDestroyView() {
@@ -51,11 +57,13 @@ class FragmentAdd : Fragment() {
         _binding = null
     }
 
-    private fun setupDialogListener(){
-        parentFragmentManager.setFragmentResultListener(DialogAddExpense.REQUEST_KEY, viewLifecycleOwner, FragmentResultListener { _, result ->
-            val expense = result.getSerializable(DialogAddExpense.RESPONSE_KEY)
-
+    fun showDialog(){
+        DialogAddExpense.showDialog(parentFragmentManager, null)
+    }
+    fun getResultFromDialog(){
+        parentFragmentManager.setFragmentResultListener(DialogAddExpense.REQUEST_KEY, viewLifecycleOwner, FragmentResultListener { requestKey, result ->
+            val e = result.getBundle(DialogAddExpense.RESPONSE_KEY)
+            Log.d(TAG, "Dialog result: ${e.toString()}")
         })
-
     }
 }
