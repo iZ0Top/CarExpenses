@@ -4,17 +4,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.runtime.key
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentResultListener
-import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import com.example.carexpenses.databinding.FragmentAddBinding
 import com.example.carexpenses.model.Expense
 import com.example.carexpenses.screens.dialog.DialogAddExpense
 import com.example.carexpenses.utils.TAG
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class FragmentAdd : Fragment() {
@@ -23,49 +18,62 @@ class FragmentAdd : Fragment() {
     private val binding get() = _binding!!
     lateinit var mAddViewModel: AddViewModel
 
-    var res: String? = null
+    var res: Expense? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "FragmentAdd. onCreate")
 
-        childFragmentManager.setFragmentResultListener(DialogAddExpense.REQUEST_KEY) {}
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentAddBinding.inflate(inflater, container, false)
-
-
-        childFragmentManager.setFragmentResultListener(DialogAddExpense.REQUEST_KEY, viewLifecycleOwner, FragmentResultListener { _, result ->
-            res = result.getString(DialogAddExpense.BUNDLE_KEY)
-            Log.d(TAG, "Result listener childFragmentManager on FragmentAdd")
-        })
-
-        Log.d(TAG, "Result from dialog: $res")
-
-
+        Log.d(TAG, "FragmentAdd. onCreateView")
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "FragmentAdd. onViewCreated")
     }
 
 
 
     override fun onStart() {
         super.onStart()
+        Log.d(TAG, "FragmentAdd. onStart")
         mAddViewModel = ViewModelProvider(this).get(AddViewModel::class.java)
 
+        childFragmentManager.setFragmentResultListener(DialogAddExpense.REQUEST_KEY, this) { _, result ->
+            val r = result.getSerializable(DialogAddExpense.BUNDLE_KEY)
+            Log.d(TAG, "FragmentAdd. childFragmentManager.FragmentResultListener, result=${r.toString()}")
+        }
+
         binding.addFab.setOnClickListener {
-            val dialod = DialogAddExpense()
-            dialod.show(childFragmentManager, DialogAddExpense.DIALOG_TAG)
+            val dialog = DialogAddExpense()
+            dialog.show(childFragmentManager, DialogAddExpense.DIALOG_TAG)
         }
     }
 
     override fun onResume() {
         super.onResume()
+        Log.d(TAG, "FragmentAdd. onResume")
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "FragmentAdd. onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "FragmentAdd. onStop")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        Log.d(TAG, "FragmentAdd. onDestroyView")
         _binding = null
     }
 
