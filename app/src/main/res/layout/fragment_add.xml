@@ -41,6 +41,23 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             />
+        <TextView
+            android:id="@+id/tv_add_sum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:text="999 грн"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
