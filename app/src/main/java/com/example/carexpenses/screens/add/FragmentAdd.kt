@@ -16,6 +16,7 @@ class FragmentAdd : Fragment() {
 
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
+
     lateinit var mAddViewModel: AddViewModel
 
     var res: Expense? = null
@@ -23,7 +24,11 @@ class FragmentAdd : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "FragmentAdd. onCreate")
+        mAddViewModel = ViewModelProvider(this).get(AddViewModel::class.java)
 
+        if (arguments != null) {
+
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,7 +47,7 @@ class FragmentAdd : Fragment() {
     override fun onStart() {
         super.onStart()
         Log.d(TAG, "FragmentAdd. onStart")
-        mAddViewModel = ViewModelProvider(this).get(AddViewModel::class.java)
+
 
         childFragmentManager.setFragmentResultListener(DialogAddExpense.REQUEST_KEY, this) { _, result ->
             val r = result.getSerializable(DialogAddExpense.BUNDLE_KEY)
