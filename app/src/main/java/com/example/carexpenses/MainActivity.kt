@@ -6,8 +6,11 @@ import android.util.Log
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.carexpenses.database.room.RoomDatabase
+import com.example.carexpenses.database.room.RoomRepository
 import com.example.carexpenses.databinding.ActivityMainBinding
 import com.example.carexpenses.utils.APP_ACTIVITY
+import com.example.carexpenses.utils.REPOSITORY
 import com.example.carexpenses.utils.TAG
 import com.example.carexpenses.utils.showToast
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -26,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Log.d(TAG, "MainActivity. onCreate")
 
         APP_ACTIVITY = this
 
@@ -60,27 +64,31 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-
-        Log.d(TAG, "onStart")
+        Log.d(TAG, "MainActivity. onStart")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d(TAG, "onResume")
+        Log.d(TAG, "MainActivity. onResume")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d(TAG, "onPause")
+        Log.d(TAG, "MainActivity. onPause")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d(TAG, "onStop")
+        Log.d(TAG, "MainActivity. onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(TAG, "onDestroy")
+        Log.d(TAG, "MainActivity. onDestroy")
+    }
+
+    private fun initDatabase(){
+        val dao = RoomDatabase.getInstance(this).getRoomDao()
+        REPOSITORY = RoomRepository(dao)
     }
 }

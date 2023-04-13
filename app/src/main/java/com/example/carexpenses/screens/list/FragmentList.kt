@@ -23,6 +23,7 @@ class FragmentList : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mListViewModel = ViewModelProvider(this).get(ListViewModel::class.java)
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentListBinding.inflate(layoutInflater, container, false)
@@ -31,16 +32,9 @@ class FragmentList : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        mListViewModel = ViewModelProvider(this).get(ListViewModel::class.java)
-        mListViewModel.initDatabase(){
-            Log.d(TAG, "mListViewModel.initDatabase CallBack")
-        }
-
         mAdapter = AdapterEvent()
-
         mRecyclerView = binding.recyclerView
         mRecyclerView.adapter = mAdapter
-
 
     }
 

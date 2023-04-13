@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
+import com.example.carexpenses.adapters.add.AdapterAdd
 import com.example.carexpenses.databinding.FragmentAddBinding
 import com.example.carexpenses.model.Expense
 import com.example.carexpenses.screens.dialog.DialogAddExpense
@@ -19,16 +22,16 @@ class FragmentAdd : Fragment() {
 
     lateinit var mAddViewModel: AddViewModel
 
-    var res: Expense? = null
+    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var mAdapter: AdapterAdd
+    private lateinit var mObserver: Observer<List<Expense>>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "FragmentAdd. onCreate")
         mAddViewModel = ViewModelProvider(this).get(AddViewModel::class.java)
 
-        if (arguments != null) {
-
-        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -48,10 +51,20 @@ class FragmentAdd : Fragment() {
         super.onStart()
         Log.d(TAG, "FragmentAdd. onStart")
 
+        mRecyclerView = binding.addRecyclerView
+        mAdapter = AdapterAdd()
+        mRecyclerView.adapter = mAdapter
+
+
+        mObserver = Observer {
+            mAdapter.setList(it)
+        }
+
+        mAddViewModel.currentExpenseList.observe(viewLifecycleOwner, mObserver)
 
         childFragmentManager.setFragmentResultListener(DialogAddExpense.REQUEST_KEY, this) { _, result ->
-            val r = result.getSerializable(DialogAddExpense.BUNDLE_KEY)
-            Log.d(TAG, "FragmentAdd. childFragmentManager.FragmentResultListener, result=${r.toString()}")
+            val expense = result.getSerializable(DialogAddExpense.BUNDLE_KEY) as Expense
+            mAddViewModel.addToList(expense)
         }
 
         binding.addFab.setOnClickListener {
@@ -79,11 +92,8 @@ class FragmentAdd : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         Log.d(TAG, "FragmentAdd. onDestroyView")
+        mAddViewModel.currentExpenseList.removeObservers(viewLifecycleOwner)
+        mRecyclerView.adapter = null
         _binding = null
-    }
-
-    fun showDialog(){
-    }
-    fun getResultFromDialog(){
     }
 }

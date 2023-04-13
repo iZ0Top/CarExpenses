@@ -24,14 +24,6 @@ class DialogAddExpense: DialogFragment() {
         _dialogBinding = DialogAddExpenseBinding.inflate(layoutInflater)
         Log.d(TAG, "Dialog. onCreateDialog")
 
-        val listener = DialogInterface.OnClickListener { _, _ ->
-            Log.d(TAG, "Dialog. listener")
-            validationData()
-            val bundle = Bundle()
-            bundle.putSerializable(BUNDLE_KEY, expense)
-            parentFragmentManager.setFragmentResult(REQUEST_KEY, bundle)
-        }
-
         var dialogBuilder = AlertDialog.Builder(requireContext())
             .setCancelable(false)
             .setView(dialogBinding.root)
@@ -99,13 +91,14 @@ class DialogAddExpense: DialogFragment() {
         parentFragmentManager.setFragmentResult(REQUEST_KEY, bundle)
 
         Log.d(TAG,"Dialog. validationData - parentFragmentManager.setFragmentResult result sent" )
+
         dismiss()
     }
 
     companion object{
         val DIALOG_TAG = DialogAddExpense::class.java.simpleName
-        val REQUEST_KEY = "dialog_add_request_key"
-        val BUNDLE_KEY = "dialog_add_bundle_key"
+        const val REQUEST_KEY = "dialog_add_request_key"
+        const val BUNDLE_KEY = "dialog_add_bundle_key"
 
     }
 }

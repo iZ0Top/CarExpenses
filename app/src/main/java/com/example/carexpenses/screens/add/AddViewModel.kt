@@ -5,23 +5,46 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.example.carexpenses.model.Event
 import com.example.carexpenses.model.Expense
+import com.example.carexpenses.utils.REPOSITORY
 import com.example.carexpenses.utils.TAG
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class AddViewModel(application: Application): AndroidViewModel(application) {
 
-    private var id_group = 0
-
     val currentExpenseList = MutableLiveData<List<Expense>>()
+    private val list = mutableListOf<Expense>()
 
-    fun setGroupToEdit(list: List<Expense>){
+    fun setListToEdit(groupEvent: Event){
+
+    }
+
+
+    fun addToList(expense: Expense){
+        list.add(expense)
         currentExpenseList.postValue(list)
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.insertExpense(expense) {
+                viewModelScope.launch(Dispatchers.Main){
+                }
+            }
+        }
     }
 
-    fun createNewGroup(){
-        currentExpenseList.postValue(emptyList())
-    }
+    fun dellFromList(expense: Expense){
+        list.remove(expense)
+        currentExpenseList.postValue(list)
+        viewModelScope.launch(Dispatchers.IO){
+            REPOSITORY.deleteExpense(expense){
+                viewModelScope.launch(Dispatchers.Main){
 
+                }
+            }
+        }
+    }
 
     override fun onCleared() {
         super.onCleared()
